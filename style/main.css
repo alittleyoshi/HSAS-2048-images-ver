@@ -3,8 +3,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #9cc2d2;
-  color: #354b59;
+  background: #c96152;
+  color: #ffffff;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-family: "Whitney SSm A","Whitney SSm B","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 18px; }
@@ -98,7 +98,7 @@ h1.title {
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  background: #0c92bf;
+  background: #a84f44;
   padding: 15px 25px;
   font-size: 25px;
   height: 25px;
@@ -211,7 +211,7 @@ hr {
   -ms-user-select: none;
   -ms-touch-action: none;
   touch-action: none;
-  background: #1e6477;
+  background: #86919b;
   border-radius: 6px;
   width: 500px;
   height: 500px;
@@ -983,7 +983,7 @@ a.learn:hover, a.keep-playing-button:hover, a.learn-low:hover {
 }
 .restart-button, a.retry-button {
   display: inline-block;
-  background: #1e6477;
+  background: #86919b;
   border-radius: 3px;
   padding: 0 20px;
   text-decoration: none;
