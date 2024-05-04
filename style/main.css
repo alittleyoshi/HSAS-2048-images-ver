@@ -266,10 +266,6 @@ hr {
     margin-left: 9px; }
     .game-message a.keep-playing-button {
       display: none; }
-  .game-message .score-sharing {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px; }
   .game-message.game-won {
     background: rgba(237, 194, 46, 0.5);
     color: #f9f6f2; }
@@ -613,13 +609,6 @@ hr {
 .game-explanation {
   margin-top: 50px; }
 
-.sharing {
-  margin-top: 20px;
-  text-align: center; }
-  .sharing > iframe, .sharing > span, .sharing > form {
-    display: inline-block;
-    vertical-align: middle; }
-
 @media screen and (max-width: 520px) {
   html, body {
     font-size: 15px; }
@@ -724,10 +713,6 @@ hr {
       margin-left: 9px; }
       .game-message a.keep-playing-button {
         display: none; }
-    .game-message .score-sharing {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px; }
     .game-message.game-won {
       background: rgba(237, 194, 46, 0.5);
       color: #f9f6f2; }
@@ -859,8 +844,6 @@ hr {
       margin-bottom: 0 !important; }
     .game-message .lower {
       margin-top: 10px !important; }
-    .game-message.game-won .score-sharing {
-      margin-top: 10px; }
     .game-message.game-over .mailing-list {
       margin-top: 25px; }
     .game-message .mailing-list {
@@ -868,10 +851,6 @@ hr {
       .game-message .mailing-list .mailing-list-email-field {
         width: 180px; }
 
-  .sharing > iframe, .sharing > span, .sharing > form {
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 20px; } }
 .pp-donate button {
   -webkit-appearance: none;
   -moz-appearance: none;

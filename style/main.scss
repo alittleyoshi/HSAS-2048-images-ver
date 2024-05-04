@@ -298,12 +298,6 @@ hr {
       }
     }
 
-    .score-sharing {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px;
-    }
-
     @include animation(fade-in 800ms ease $transition-speed * 12);
     @include animation-fill-mode(both);
 
@@ -554,16 +548,6 @@ hr {
   margin-top: 50px;
 }
 
-.sharing {
-  margin-top: 20px;
-  text-align: center;
-
-  > iframe, > span, > form {
-    display: inline-block;
-    vertical-align: middle;
-  }
-}
-
 @include smaller($mobile-threshold) {
   // Redefine variables for smaller screens
   $field-width: 280px;
@@ -641,10 +625,6 @@ hr {
       margin-top: 10px !important;
     }
 
-    &.game-won .score-sharing {
-      margin-top: 10px;
-    }
-
     &.game-over .mailing-list {
       margin-top: 25px;
     }
@@ -658,13 +638,6 @@ hr {
     }
   }
 
-  .sharing {
-    > iframe, > span, > form {
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 20px;
-    }
-  }
 }
 
 // PP Donate button
