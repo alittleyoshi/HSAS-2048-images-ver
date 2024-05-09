@@ -26,10 +26,19 @@
 
   <!--预加载-->
   <script>
-    for (var i = 2; i <= 2048; i *= 2) {
+    function load(i) {
+      return function() {
+        var image = new Image()
+        image.src = "tile-sets\\hsas\\" + i + ".jpg"
+        if (i <= 64) {
+          image.onload = load(i * 32)
+        }
+      }
+    }
+    for (var i = 2; i <= 32; i *= 2) {
       var image = new Image()
-      var tmp = "tile-sets\\hsas\\" + i + ".jpg"
-      image.src = tmp
+      image.src = "tile-sets\\hsas\\" + i + ".jpg"
+      image.onload = load(i * 32)
     }
   </script>
 </head>
