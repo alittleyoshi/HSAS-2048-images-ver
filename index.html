@@ -24,7 +24,8 @@
   <script>
     for (var i = 2; i <= 2048; i *= 2) {
       var image = new Image()
-      image.scr = "tile-sets\\hsas\\" + i + ".jpg"
+      var tmp = "tile-sets\\hsas\\" + i + ".jpg"
+      image.src = tmp
     }
   </script>
 </head>
