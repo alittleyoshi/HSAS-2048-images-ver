@@ -401,11 +401,6 @@ hr {
     font-family: 'Source Code Pro', Courier;
     font-size: 16px; 
     color: #354b59;}
-  .tile.tile-minus-1 .tile-inner {
-    background: url('../tile-sets/hsas/minus-1.jpg');
-    background-size: 100%;
-    color: rgba(0,0,0,0);
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-2 .tile-inner {
     background: url('../tile-sets/hsas/2.jpg');
     background-size: 100%;
