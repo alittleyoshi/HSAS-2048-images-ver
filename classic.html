@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <title>南国 2048 · 经典版</title>
+
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="icon.jpg">
+  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  <meta name='description' content='南方科技大学附属中学2048游戏，南科大附中2048，HSAS2048'>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="keywords" content="HTML,CSS,Javascript,HSAS2048,南国2048,play 2048,南方科技大学附属中学,南科大附中">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="format-detection" content="telephone=no" />
+
+  <meta property="og:title" content="2048游戏"/>
+  <meta property="og:site_name" content="2048游戏"/>
+  <meta property="og:description" content="玩HSAS 2048。然后报考HSAS"/>
+  <meta property="og:image" content="meta/og_image.png"/>
+  
+  <link rel="icon" type="image/png" href="icon.jpg">
+
+  <!--预加载-->
+  <script>
+    function load(i) {
+      return function() {
+        var image = new Image()
+        image.src = "tile-sets/hsas/" + i + ".jpg"
+        if (i <= 64) {
+          image.onload = load(i * 32)
+        }
+      }
+    }
+    for (var i = 2; i <= 32; i *= 2) {
+      var image = new Image()
+      image.src = "tile-sets/hsas/" + i + ".jpg"
+      image.onload = load(i * 32)
+    }
+  </script>
+</head>
+<body>
+  <nav aria-label="版本切换" style="max-width:500px;margin:0 auto 24px;padding:0 12px;display:flex;justify-content:space-between;font-size:14px"><span>南国 2048 · 经典版</span><a href="index.html" style="color:white">体验重制版 ↗</a></nav>
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">南国2048</h1>
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+
+    <div class="above-game">
+      <p class="game-intro">使用箭头键滑动图片。合并相同的图片以创建新的图片。</p>
+      <br>
+      <br>
+      <br>
+      <p>注意：由于服务器在US，请耐心等待加载。</p>
+      <br>
+      <a class="restart-button">新游戏</a>
+    </div>
+
+    <div class="pre-game">
+      <p class="learn">来南国学习，做高考状元</p><a class="报考" href="https://www.hsas.edu.cn">南国</a>
+    </div>
+
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+	        <a href="https://www.hsas.edu.cn" class="learn learn-low">报考！</a>
+          <a class="keep-playing-button">继续玩</a>
+          <a class="retry-button">再玩一次</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+
+      <div class="tile-container">
+
+      </div>
+    </div>
+
+
+    <p class="game-explanation">
+      <strong class="important">欢迎报考南方科技大学附属中学！</strong><a href="https://www.hsas.edu.cn" target="_blank"></a>
+    </p>
+    <hr>
+    <p class="game-explanation">
+      <strong class="important">玩法：</strong>使用你的<strong>箭头键</strong>或是<strong>滑动屏幕</strong>移动教师。当两个相同的教师接触时，他、她们会<strong>升级！</strong>
+    </p>
+    <hr>
+    <p>
+    这是Gabriele Cirulli创建的<a href="https://gabrielecirulli.github.io/2048/" target="_blank">原始游戏</a>的修改版本。
+    </p>
+    <p>
+      南国ver. made by Liu P.H.
+      <br>
+      Special thanks to Lin X.H. for his help.
+      <br>
+      Special thanks to Zhou S.X. for his help.
+    </p>
+     <a href="https://github.com/alittleyoshi/HSAS-2048-images-ver">
+	View this project on Github.
+     </a>
+  </div>
+
+  <script src="classic/js/bind_polyfill.js"></script>
+  <script src="classic/js/classlist_polyfill.js"></script>
+  <script src="classic/js/animframe_polyfill.js"></script>
+  <script src="classic/js/keyboard_input_manager.js"></script>
+  <script src="classic/js/html_actuator.js"></script>
+  <script src="classic/js/grid.js"></script>
+  <script src="classic/js/tile.js"></script>
+  <script src="classic/js/local_storage_manager.js"></script>
+  <script src="classic/js/game_manager.js"></script>
+  <script src="classic/js/application.js"></script>
+
+</body>
+</html>

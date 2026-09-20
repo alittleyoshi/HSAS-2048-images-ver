@@ -1,0 +1,1 @@
+{"name":"hsas-2048-remaster","private":true,"scripts":{"start":"node scripts/serve.cjs","test":"node --test tests/game.test.cjs"}}

@@ -5,8 +5,8 @@ window.fakeStorage = {
   removeItem: function (key) { delete this._data[key]; }
 };
 function LocalStorageManager() {
-  this.bestScoreKey = 'bestScore';
-  this.gameStateKey = 'gameState';
+  this.bestScoreKey = 'hsasClassicBestScore';
+  this.gameStateKey = 'hsasClassicGameState';
   this.persistent = false;
   var backend = window.fakeStorage;
   try {

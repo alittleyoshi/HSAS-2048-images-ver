@@ -4,7 +4,7 @@ function HTMLActuator() {
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
 
-  this.score = null;
+  this.score = 0;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -23,7 +23,6 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
-    self.updateJourney(grid, metadata);
 
     if (metadata.terminated) {
       if (metadata.over) {
@@ -51,7 +50,20 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
-
+  var valueMap = {
+    2 :    '<Udacity>',
+    4 :    '<Intro CS>',
+    8 :    "skills=['code']",
+    16 :   "skills.add('CSS')",
+    32 :   '</Intro CS>',
+    64 :   '<Job search>',
+    128 :  'getJob(skills)',
+    256 :  '</Job search>',
+    512 :  'if Udacious:',
+    1024 : 'skills.increase()',
+    2048 : 'myJob.advance()',
+    4096 : 'myCareer=myJob'
+  }
   var self = this;
 
   var wrapper   = document.createElement("div");
@@ -69,12 +81,7 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   //inner.textContent = tile.value;
-  var label = document.createElement("span");
-  label.textContent = tile.value;
-  inner.appendChild(label);
-  wrapper.setAttribute("role", "img");
-  wrapper.setAttribute("aria-label", tile.value + " 分教师方块");
-  if (tile.value <= 2048) inner.style.backgroundImage = 'url("tile-sets/hsas/' + tile.value + '.jpg")';
+  inner.textContent = valueMap[tile.value];
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -118,7 +125,7 @@ HTMLActuator.prototype.positionClass = function (position) {
 HTMLActuator.prototype.updateScore = function (score) {
   this.clearContainer(this.scoreContainer);
 
-  var difference = this.score === null ? 0 : score - this.score;
+  var difference = score - this.score;
   this.score = score;
 
   this.scoreContainer.textContent = this.score;
@@ -138,7 +145,7 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "恭喜，抵达 2048！" : "这一程，收获满满";
+  var message = won ? "You win!" : "Game over!";
 
   if (typeof ga !== "undefined") {
     ga("send", "event", "game", "end", type, this.score);
@@ -152,20 +159,4 @@ HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
-};
-
-HTMLActuator.prototype.updateJourney = function (grid, metadata) {
-  var max = 2;
-  grid.eachCell(function (x, y, tile) { if (tile) max = Math.max(max, tile.value); });
-  var level = Math.min(11, Math.log2(max));
-  var next = Math.min(2048, max * 2);
-  document.querySelector("#next-value").textContent = max >= 2048 ? "已达成" : next;
-  document.querySelector(".next-tile img").src = "tile-sets/hsas/" + next + ".jpg";
-  document.querySelector("#progress-text").textContent = level + " / 11";
-  document.querySelector("#progress-fill").style.width = (level / 11 * 100) + "%";
-  document.querySelectorAll(".portrait").forEach(function (item) {
-    item.classList.toggle("reached", Number(item.dataset.value) <= max);
-  });
-  document.querySelector(".undo-button").disabled = !metadata.canUndo;
-  document.querySelector("#game-status").textContent = "当前分数 " + metadata.score + "，最大方块 " + max;
 };
