@@ -8,9 +8,10 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
-  this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
+  this.inputManager.on("keepPlaying", this.continuePlaying.bind(this));
   this.inputManager.on("clearAll", this.clearAll.bind(this))
 
+  this.inputManager.on("undo", this.undo.bind(this));
   this.setup();
 }
 
@@ -22,9 +23,10 @@ GameManager.prototype.restart = function () {
 };
 
 // Keep playing after winning (allows going over 2048)
-GameManager.prototype.keepPlaying = function () {
+GameManager.prototype.continuePlaying = function () {
   this.keepPlaying = true;
   this.actuator.continueGame(); // Clear the game won/lost message
+  this.actuate();
 };
 
 GameManager.prototype.clearAll = function () {
@@ -42,6 +44,7 @@ GameManager.prototype.isGameTerminated = function () {
 
 // Set up the game
 GameManager.prototype.setup = function () {
+  this.previousState = null;
   var previousState = this.storageManager.getGameState();
 
   // Reload the game from a previous game if present
@@ -102,6 +105,7 @@ GameManager.prototype.actuate = function () {
     over:       this.over,
     won:        this.won,
     bestScore:  this.storageManager.getBestScore(),
+    canUndo: !!this.previousState,
     terminated: this.isGameTerminated()
   });
 
@@ -142,6 +146,7 @@ GameManager.prototype.move = function (direction) {
 
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
+  var snapshot = this.serialize();
   var cell, tile;
 
   var vector     = this.getVector(direction);
@@ -189,6 +194,7 @@ GameManager.prototype.move = function (direction) {
   });
 
   if (moved) {
+    this.previousState = snapshot;
     this.addRandomTile();
 
     if (!this.movesAvailable()) {
@@ -278,4 +284,18 @@ GameManager.prototype.tileMatchesAvailable = function () {
 
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
+};
+
+// Restore exactly one valid move, including its random spawn and score.
+GameManager.prototype.undo = function () {
+  if (!this.previousState) return;
+  var state = this.previousState;
+  this.grid = new Grid(state.grid.size, state.grid.cells);
+  this.score = state.score;
+  this.over = state.over;
+  this.won = state.won;
+  this.keepPlaying = state.keepPlaying;
+  this.previousState = null;
+  this.actuator.continueGame();
+  this.actuate();
 };
