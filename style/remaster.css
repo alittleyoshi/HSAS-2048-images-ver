@@ -24,3 +24,6 @@
 .tile-position-4-2{transform:translate(calc(300% + 3 * var(--gap)),calc(100% + 1 * var(--gap)))}
 .tile-position-4-3{transform:translate(calc(300% + 3 * var(--gap)),calc(200% + 2 * var(--gap)))}
 .tile-position-4-4{transform:translate(calc(300% + 3 * var(--gap)),calc(300% + 3 * var(--gap)))}@media(max-width:370px){.intro h2{position:static;font-size:14px;margin-top:10px}.intro h2 br{display:none}.intro h2 br::after{content:' '}}
+
+@media(max-width:680px){.site-header nav{gap:13px}.site-header nav>a.classic-link{display:inline;font-size:11px;color:var(--red-dark)}}
+@media(max-width:370px){.site-header{padding-left:14px;padding-right:14px}.school-brand small{font-size:5px}.site-header nav{gap:8px}.school-brand{font-size:10px;gap:6px}.school-brand img{width:30px;height:30px}}

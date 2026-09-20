@@ -16,7 +16,7 @@ Gabriele made this in his spare time, and it's hosted on GitHub (which means I d
 
 ## 2026 remastered edition
 
-Interface and interaction design by **OpenAI Codex**. The original school logo,
+Interface and interaction design by **Codex · GPT-6**. The original school logo,
 `#c96152` theme color, all eleven teacher images, image order, scoring, random
 2/4 spawn probabilities, and classic 4×4 gameplay are preserved.
 
@@ -40,3 +40,7 @@ longer enabled, and all game assets are local HTTPS-compatible paths.
 Saves reuse the original `gameState` and `bestScore` keys for compatibility.
 Numeric labels use `hsasNumbers`. Undo is available for the latest valid move in
 this session; refreshing clears the undo snapshot. No analytics or remote fonts.
+
+### Classic edition
+
+`classic.html` preserves the original layout and teacher-image game from commit `bf79b3d`. Both editions have reciprocal navigation. Classic scripts live in `classic/js/`; existing images and the original stylesheet are shared. Compatibility fixes remove obsolete appcache/remote font markup and correct win-continuation and asset URLs. Classic saves use `hsasClassicGameState` and `hsasClassicBestScore`, so switching editions does not overwrite either game.
